@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -9,7 +9,7 @@ class Character {
 protected:
     string description;
 public:
-    virtual std::string getDescription() const { return description; };
+    virtual std::string getDescription() const { return description; }
     virtual int getAttack() const = 0;
     virtual int getSpeed() const = 0;
     virtual int getDefense() const = 0;
@@ -45,6 +45,11 @@ protected:
     Character* character;
 public:
     equip_testmentDecorator(Character* c) : character(c) {}
+    Character* getInner() const { return character; }
+    virtual std::string getDescription() const override { return character->getDescription(); }
+    virtual int getAttack() const override { return character->getAttack(); }
+    virtual int getSpeed() const override { return character->getSpeed(); }
+    virtual int getDefense() const override { return character->getDefense(); }
     virtual ~equip_testmentDecorator() { delete character; }
 };
 
